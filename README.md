@@ -57,6 +57,10 @@ http://localhost:3000/movies?page=2&limit=10
 }
 ```
 
+## Contributing
+Contributions are welcome! If you'd like to contribute to this project, please fork the repository and create a pull request.
+
+
 ## Acknowledgments
 
 This project is made possible with the help of the following libraries:
