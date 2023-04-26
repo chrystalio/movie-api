@@ -7,10 +7,14 @@ const server = Hapi.server({
     host: 'localhost'
 });
 
+const DEFAULT_LIMIT = 10;
+const DEFAULT_PAGE = 1;
+
 server.route({
     method: 'GET',
     path: '/movies',
     handler: async (request, h) => {
+        const { page = DEFAULT_PAGE, limit = DEFAULT_LIMIT } = request.query;
         const response = await axios.get('https://en.wikipedia.org/wiki/List_of_Indonesian_films');
         const $ = cheerio.load(response.data);
         const movies = [];
@@ -26,7 +30,19 @@ server.route({
             }
         });
 
-        return movies;
+        const startIndex = (page - 1) * limit;
+        const endIndex = page * limit;
+        const paginatedMovies = movies.slice(startIndex, endIndex);
+
+        return {
+            data: paginatedMovies,
+            pagination: {
+                page,
+                limit,
+                totalMovies: movies.length,
+                totalPages: Math.ceil(movies.length / limit)
+            }
+        };
     }
 });
 
