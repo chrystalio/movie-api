@@ -17,10 +17,10 @@ A REST API that scrapes data from Wikipedia's list of Indonesian films and provi
 
 ### Usage
 
-Once the server is running, you can access the API by sending a GET request to the `/movies` endpoint:
+Once the server is running, you can access the API by sending a GET request to the `/` endpoint:
 
 ```
-http://localhost:3000/movies
+http://localhost:3000/
 ```
 
 
