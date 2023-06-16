@@ -12,7 +12,7 @@ const DEFAULT_PAGE = 1;
 
 server.route({
     method: 'GET',
-    path: '/movies',
+    path: '/',
     handler: async (request, h) => {
         const { page = DEFAULT_PAGE, limit = DEFAULT_LIMIT } = request.query;
         const response = await axios.get('https://en.wikipedia.org/wiki/List_of_Indonesian_films');
@@ -43,6 +43,15 @@ server.route({
                 totalPages: Math.ceil(movies.length / limit)
             }
         };
+    }
+});
+
+// Add the catch-all route
+server.route({
+    method: '*',
+    path: '/{any*}',
+    handler: (request, h) => {
+        return h.response('Not Found').code(404);
     }
 });
 
