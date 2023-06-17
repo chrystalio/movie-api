@@ -24,9 +24,11 @@ server.route({
             const casts = $(elem).find('td:nth-of-type(3)').text().trim();
             const category = $(elem).find('td:nth-of-type(4)').text().trim();
             const director = $(elem).find('td:nth-of-type(2)').text().trim();
+            const notes = $(elem).find('td:nth-of-type(5)').text().trim();
+
 
             if (title && casts && category && director) {
-                movies.push({ title, casts, category, director });
+                movies.push({ title, casts, category, director, notes });
             }
         });
 
