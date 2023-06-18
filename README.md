@@ -26,7 +26,7 @@ http://localhost:3000/
 
 By default, the API returns the first 10 movies. You can specify the number of movies to return and the page number using query parameters:
 ```
-http://localhost:3000/movies?page=2&limit=10
+http://localhost:3000/?page=2&limit=10
 ```
 
 
@@ -57,12 +57,52 @@ http://localhost:3000/movies?page=2&limit=10
 }
 ```
 
+Also you can filter the data by categories by sending a GET request to the `/category` endpoint:
+
+```
+http://localhost:3000/?category=Comedy&limit=3
+```
+### Example Response
+
+```json
+{
+    "data": [
+        {
+            "title": "Pintar Pintar Bodoh",
+            "casts": "Warkop",
+            "category": "Comedy",
+            "director": "Arizal",
+            "notes": ""
+        },
+        {
+            "title": "Dongkrak Antik",
+            "casts": "Warkop",
+            "category": "Comedy",
+            "director": "Arizal",
+            "notes": ""
+        },
+        {
+            "title": "Maju Kena Mundur Kena",
+            "casts": "Warkop",
+            "category": "Comedy",
+            "director": "Arizal",
+            "notes": ""
+        },
+    ],
+    "pagination": {
+        "page": 1,
+        "limit": 3,
+        "totalMovies": 22,
+        "totalPages": 3
+    }
+}
+```
+
 ## Contributing
 Contributions are welcome! If you'd like to contribute to this project, please fork the repository and create a pull request.
 
 
 ## Acknowledgments
-
 This project is made possible with the help of the following libraries:
 
 - [cheerio](https://github.com/cheeriojs/cheerio) - for scraping HTML content
