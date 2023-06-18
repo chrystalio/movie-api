@@ -14,9 +14,14 @@ server.route({
     method: 'GET',
     path: '/',
     handler: async (request, h) => {
-        const { page = DEFAULT_PAGE, limit = DEFAULT_LIMIT } = request.query;
+        const {
+            page = DEFAULT_PAGE, limit = DEFAULT_LIMIT
+        } = request.query;
         const response = await axios.get('https://en.wikipedia.org/wiki/List_of_Indonesian_films');
         const $ = cheerio.load(response.data);
+        const {
+            category
+        } = request.query;
         const movies = [];
 
         $('table.wikitable tr').each((i, elem) => {
@@ -28,23 +33,37 @@ server.route({
 
 
             if (title && casts && category && director) {
-                movies.push({ title, casts, category, director, notes });
+                movies.push({
+                    title,
+                    casts,
+                    category,
+                    director,
+                    notes
+                });
             }
         });
 
+        let filteredMovies = movies;
+        if (category) {
+            filteredMovies = movies.filter(movie => movie.category === category);
+        }
+
+
         const startIndex = (page - 1) * limit;
         const endIndex = page * limit;
-        const paginatedMovies = movies.slice(startIndex, endIndex);
+        const paginatedMovies = filteredMovies.slice(startIndex, endIndex);
+
 
         return {
             data: paginatedMovies,
             pagination: {
                 page,
                 limit,
-                totalMovies: movies.length,
-                totalPages: Math.ceil(movies.length / limit)
+                totalMovies: filteredMovies.length,
+                totalPages: Math.ceil(filteredMovies.length / limit)
             }
         };
+        
     }
 });
 
