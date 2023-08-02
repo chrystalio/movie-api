@@ -26,7 +26,7 @@ http://localhost:3000/
 
 By default, the API returns the first 10 movies. You can specify the number of movies to return and the page number using query parameters:
 ```
-http://localhost:3000/?page=2&limit=10
+http://localhost:3000/?page=1&limit=2
 ```
 
 
@@ -50,7 +50,7 @@ http://localhost:3000/?page=2&limit=10
   ],
   "pagination": {
     "page": "1",
-    "limit": 10,
+    "limit": 3,
     "totalMovies": 174,
     "totalPages": 18
   }
