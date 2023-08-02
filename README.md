@@ -15,6 +15,14 @@ A REST API that scrapes data from Wikipedia's list of Indonesian films and provi
 2. Install dependencies: `npm install`
 3. Start the server: `npm run dev`
 
+## Docker Setup 
+
+If you prefer running the application in a Docker container, follow these steps:
+
+1. Build the Docker image: `docker build -t chrystalio/movie-api:1.0 .`
+2. Run the Docker container: `docker run -p 3000:3000 --name movie-api-container chrystalio/movie-api:1.0`
+3. Access the API at `http://localhost:3000/`
+
 ### Usage
 
 Once the server is running, you can access the API by sending a GET request to the `/` endpoint:
