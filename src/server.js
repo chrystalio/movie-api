@@ -4,7 +4,7 @@ const cheerio = require('cheerio');
 
 const server = Hapi.server({
     port: 3000,
-    host: 'localhost'
+    host: '0.0.0.0'
 });
 
 const DEFAULT_LIMIT = 10;
